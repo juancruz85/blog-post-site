@@ -4,18 +4,16 @@ export default function Header() {
   return (
     <header>
       <div className="logo">
-        <div className="mark">JC</div>
+        <div className="mark">CI</div>
         <div>
-          <div style={{ fontWeight: 700 }}>Juan Cruz</div>
-          <div style={{ fontSize: 12, color: "var(--muted)" }}>
-            "Developer" • Problem Solver • Funny Potato
-          </div>
+          <div style={{ fontWeight: 700 }}>company, inc.</div>
+          <div style={{ fontSize: 12, color: "var(--muted)" }}></div>
         </div>
       </div>
       <nav>
-        <Link href="/about">About</Link>
-        <Link href="/projects">Projects</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/about">Home</Link>
+        <Link href="/projects">Stats</Link>
+        <Link href="/contact">Account Info</Link>
       </nav>
     </header>
   );
