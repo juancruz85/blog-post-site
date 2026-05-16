@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
             --bg: #000000;
             --card: #111111;
             --muted: #bbbbbb;
-            --accent: #ff3b3b;
+            --accent:rgb(59, 79, 255);
             --glass: rgba(255, 255, 255, 0.03);
             --radius: 14px;
             --maxw: 1100px;

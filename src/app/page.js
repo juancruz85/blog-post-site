@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import AboutSection from "../components/AboutSection";
-import ProjectsSection from "../components/ProjectsSection";
+import HoursSection from "../components/HoursSection";
 
 export default function HomePage() {
   return (
@@ -10,7 +10,7 @@ export default function HomePage() {
       <Hero />
       <main>
         <AboutSection />
-        <ProjectsSection />
+        <HoursSection />
       </main>
     </div>
   );
