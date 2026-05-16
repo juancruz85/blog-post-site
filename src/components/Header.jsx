@@ -13,7 +13,7 @@ export default function Header() {
       <nav>
         <Link href="/home">Home</Link>
         <Link href="/stats">Stats</Link>
-        <Link href="/LogIn">Log In</Link>
+        <Link href="/login">Log In</Link>
         <Link href="/info">Account Info</Link>
       </nav>
     </header>
