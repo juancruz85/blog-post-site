@@ -9,7 +9,7 @@ export default function Hero() {
         <p className="lead"></p>
         <div style={{ display: "flex", gap: 10 }}>
           <Link className="btn" href="/contact"></Link>
-          <Link className="btn secondary" href="/projects"></Link>
+          <Link className="btn secondary" href="/stats"></Link>
         </div>
       </div>
 
