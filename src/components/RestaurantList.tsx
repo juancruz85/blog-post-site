@@ -48,7 +48,7 @@ export default function RestaurantList({
   useEffect(() => {
     async function getRestaurants() {
       try {
-        const response = await fetch(endpoint);
+        const response = await fetch("/api/restaurants"); // not a separate server
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
           console.error(message);
