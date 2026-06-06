@@ -2,8 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata = {
-  title: "Juan Cruz — Portfolio",
-  description: "Juan Cruz personal portfolio site",
+  title: "Company, Inc",
+  description: "Company, Inc does business",
 };
 
 export default function RootLayout({ children }) {
@@ -150,7 +150,6 @@ export default function RootLayout({ children }) {
             border-radius: 10px;
           }
 
-          /* MOBILE FIXES */
           img {
             max-width: 100%;
             height: auto;
