@@ -1,11 +1,20 @@
-import Header from "../components/Header";
-import Hero from "../components/Hero";
+import PostCard from "../components/PostCard";
 
-export default function HomePage() {
+export default function Home() {
+  const posts = [
+    {
+      _id: 1,
+      title: "Test Post",
+      content: "Lorem ipsum dolor sit amet...",
+      createdAt: new Date(),
+    },
+  ];
+
   return (
-    <div className="wrap">
-      <Header />
-      <Hero />
-    </div>
+    <main>
+      {posts.map((post) => (
+        <PostCard key={post._id} post={post} />
+      ))}
+    </main>
   );
 }
