@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 
-export default function LoginPage() {
+const RegisterationPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -11,15 +10,7 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // need to make a proper api login
-    try {
-      await axios.post("/api/auth/login", {
-        email,
-        password,
-      });
-    } catch (err) {
-      setError("Invalid credentials");
-    }
+    // need to make a proper api login registration
   };
 
   return (
@@ -27,11 +18,9 @@ export default function LoginPage() {
       <div className="login-card">
         <div className="login-gloss"></div>
 
-        <h1 className="login-title">Welcome Back</h1>
+        <h1 className="login-title">Welcome</h1>
 
-        <p className="login-subtitle">Sign in to continue</p>
-
-        {error && <div className="login-error">{error}</div>}
+        <p className="login-subtitle">Register</p>
 
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -57,13 +46,12 @@ export default function LoginPage() {
           </div>
 
           <button className="ios-login-button" type="submit">
-            Sign In
+            Register
           </button>
         </form>
-        <Link href="/Registration" className="ios-login-button">
-          Register
-        </Link>
       </div>
     </div>
   );
-}
+};
+
+export default RegisterationPage;
