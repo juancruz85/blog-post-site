@@ -1,12 +1,14 @@
 import "./globals.css";
 import Link from "next/link";
+import dbConnect from "@/lib/mongodb";
 
 export const metadata = {
   title: "Mars Corn Blog",
   description: "A Blog Project",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  await dbConnect();
   return (
     <html lang="en">
       <body>
