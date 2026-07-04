@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  await dbConnect();
+  await dbConnect;
   return (
     <html lang="en">
       <body>
@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
 
             <div className="navbar-content">
               <Link href="/" className="nav-title">
-                Mars Corn Blog
+                A Blog
               </Link>
 
               <nav className="nav-links">
@@ -39,3 +39,30 @@ export default async function RootLayout({ children }) {
     </html>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
