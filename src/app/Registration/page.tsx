@@ -1,16 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 const RegisterationPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
 
-    // need to make a proper api login registration
+    console.log(email, password);
   };
 
   return (
