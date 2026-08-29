@@ -1,19 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState } from "react";
 import Link from "next/link";
+import { signUp, type AuthActionState } from "@/lib/actions/auth";
 
-const RegisterationPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
-    console.log(email, password);
-  };
+export default function RegisterationPage() {
+  const [state, formAction, pending] = useActionState<AuthActionState, FormData>(
+    signUp,
+    null,
+  );
 
   return (
     <div className="login-page">
@@ -22,38 +17,61 @@ const RegisterationPage = () => {
 
         <h1 className="login-title">Welcome</h1>
 
-        <p className="login-subtitle">Register</p>
+        <p className="login-subtitle">Create your account</p>
 
-        <form onSubmit={handleSubmit}>
+        {state?.error && <div className="login-error">{state.error}</div>}
+        {state?.message && <div className="login-success">{state.message}</div>}
+
+        <form action={formAction}>
           <div className="input-group">
-            <label>Email</label>
+            <label htmlFor="name">Name</label>
 
             <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              placeholder="Your name"
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+
+            <input
+              id="email"
+              name="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
               placeholder="name@example.com"
             />
           </div>
 
           <div className="input-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
 
             <input
+              id="password"
+              name="password"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              autoComplete="new-password"
+              required
+              minLength={6}
+              placeholder="At least 6 characters"
             />
           </div>
 
-          <button className="ios-login-button" type="submit">
-            Register
+          <button className="ios-login-button" type="submit" disabled={pending}>
+            {pending ? "Creating account..." : "Register"}
           </button>
         </form>
+
+        <Link href="/login" className="ios-login-button">
+          Sign In
+        </Link>
       </div>
     </div>
   );
-};
-
-export default RegisterationPage;
+}

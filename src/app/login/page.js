@@ -1,26 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState } from "react";
 import Link from "next/link";
-
+import { login } from "@/lib/actions/auth";
+import { createBrowserClient } from "@/lib/supabase/client";
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // need to make a proper api login
-    try {
-      await axios.post("/api/auth/login", {
-        email,
-        password,
-      });
-    } catch (err) {
-      setError("Invalid credentials");
-    }
-  };
+  const [state, formAction, pending] = useActionState(login, null);
 
   return (
     <div className="login-page">
@@ -31,35 +16,56 @@ export default function LoginPage() {
 
         <p className="login-subtitle">Sign in to continue</p>
 
-        {error && <div className="login-error">{error}</div>}
+        {state?.error && <div className="login-error">{state.error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form action={formAction}>
           <div className="input-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
 
             <input
+              id="email"
+              name="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
               placeholder="name@example.com"
             />
           </div>
 
           <div className="input-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
 
             <input
+              id="password"
+              name="password"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              autoComplete="current-password"
+              required
+              placeholder="Enter your password"
             />
           </div>
 
-          <button className="ios-login-button" type="submit">
-            Sign In
+          <button className="ios-login-button" type="submit" disabled={pending}>
+            {pending ? "Signing in..." : "Sign In"}
           </button>
         </form>
+        <button
+          className="ios-login-button"
+          type="button"
+          onClick={() => {
+            const supabase = createBrowserClient();
+            supabase.auth.signInWithOAuth({
+              provider: "google",
+              scope: "local",
+              options: {
+                redirectTo: `${window.location.origin}/auth/callback`,
+              },
+            });
+          }}
+          disabled={pending}
+        >
+          {pending ? "google..." : "go to google"}
+        </button>
         <Link href="/Registration" className="ios-login-button">
           Register
         </Link>
