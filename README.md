@@ -3,5 +3,7 @@
 The code for a blog post site I am making. 
 This project is mainly for me to practice next.js and other things. 
 
+This Project is also not my main focus as it's a project I am doing as part of a coding class so new commits will only really happen every Friday because thats when I have time for it.
+
 Not live anywhere right now
 
