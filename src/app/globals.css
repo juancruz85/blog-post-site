@@ -116,6 +116,32 @@ body {
   background: linear-gradient(to bottom, #7a7a7a, #4f4f4f);
 }
 
+.nav-links form {
+  margin: 0;
+}
+
+.nav-link-button {
+  color: white;
+  font: inherit;
+  cursor: pointer;
+
+  padding: 6px 12px;
+
+  border-radius: 8px;
+
+  background: linear-gradient(to bottom, #707070, #454545);
+
+  border: 1px solid #222;
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.nav-link-button:hover {
+  background: linear-gradient(to bottom, #7a7a7a, #4f4f4f);
+}
+
 .main-container {
   max-width: 1100px;
   margin: 25px auto;
@@ -405,4 +431,91 @@ body {
 .ios-login-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.ios-page-title {
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.ios-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ios-page-header .ios-page-title {
+  margin-bottom: 0;
+}
+
+.ios-post-detail,
+.ios-edit-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.ios-back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #0f69c8;
+  text-decoration: none;
+}
+
+.ios-post-body {
+  margin-top: 24px;
+  line-height: 1.6;
+}
+
+.ios-post-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ios-button-secondary {
+  background: linear-gradient(to bottom, #e8e8e8, #c8c8c8 50%, #a8a8a8);
+  color: #333;
+  border-color: #666;
+}
+
+.ios-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.ios-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+.ios-form-input,
+.ios-form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #999;
+  background: linear-gradient(to bottom, #fafafa, #e4e4e4);
+}
+
+.ios-form-textarea {
+  font-family: inherit;
+  resize: vertical;
+}
+
+.ios-form-error {
+  padding: 10px;
+  border-radius: 8px;
+  color: #8b0000;
+  background: #ffe3e3;
+  border: 1px solid #d88;
 }

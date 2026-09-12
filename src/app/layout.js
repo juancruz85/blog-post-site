@@ -1,5 +1,7 @@
 import "./globals.css";
 import Link from "next/link";
+import NavLinks from "../components/NavLinks";
+import { getCurrentUserId } from "../lib/posts";
 
 export const metadata = {
   title: "Mars Corn Blog",
@@ -7,6 +9,8 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const currentUserId = await getCurrentUserId();
+
   return (
     <html lang="en">
       <body>
@@ -19,11 +23,7 @@ export default async function RootLayout({ children }) {
                 A Blog
               </Link>
 
-              <nav className="nav-links">
-                <Link href="/">Home</Link>
-                <Link href="/posts">Posts</Link>
-                <Link href="/login">Sign In</Link>
-              </nav>
+              <NavLinks isLoggedIn={Boolean(currentUserId)} />
             </div>
           </header>
 

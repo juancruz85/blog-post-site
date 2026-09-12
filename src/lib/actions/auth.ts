@@ -134,3 +134,7 @@ export async function logout(prevState: unknown) {
 
   redirect("/");
 }
+
+export async function signOutFormAction() {
+  await logout(null);
+}

@@ -1,25 +1,25 @@
 import PostCard from "../components/PostCard";
-import { GetCategorizedArticles } from "../lib/articles";
-import ArticleItemList from "../../components/ArticleListItem";
+import { getPosts, getCurrentUserId } from "../lib/posts";
 
-export default function Home() {
-  const categorizedArticles = GetCategorizedArticles();
-
-  console.log(categorizedArticles);
-  const posts = [
-    {
-      _id: 1,
-      title: "Test Post",
-      content: "Lorem ipsum dolor sit amet...",
-      createdAt: new Date(),
-    },
-  ];
+export default async function Home() {
+  const [posts, currentUserId] = await Promise.all([
+    getPosts(),
+    getCurrentUserId(),
+  ]);
 
   return (
     <main>
-      {posts.map((post) => (
-        <PostCard key={post._id} post={post} />
-      ))}
+      {posts.length === 0 ? (
+        <p>No posts yet.</p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            key={post.id}
+            post={post}
+            currentUserId={currentUserId}
+          />
+        ))
+      )}
     </main>
   );
 }
