@@ -1,6 +1,11 @@
 import PostCard from "../components/PostCard";
+import { GetCategorizedArticles } from "../lib/articles";
+import ArticleItemList from "../../components/ArticleListItem";
 
 export default function Home() {
+  const categorizedArticles = GetCategorizedArticles();
+
+  console.log(categorizedArticles);
   const posts = [
     {
       _id: 1,
@@ -18,45 +23,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
