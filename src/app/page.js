@@ -1,7 +1,9 @@
 import PostCard from "../components/PostCard";
 import { getPosts, getCurrentUserId } from "../lib/posts";
+import Tiptap from "@/components/Tiptap";
 
 export default async function Home() {
+  return <Tiptap />;
   const [posts, currentUserId] = await Promise.all([
     getPosts(),
     getCurrentUserId(),
@@ -13,11 +15,7 @@ export default async function Home() {
         <p>No posts yet.</p>
       ) : (
         posts.map((post) => (
-          <PostCard
-            key={post.id}
-            post={post}
-            currentUserId={currentUserId}
-          />
+          <PostCard key={post.id} post={post} currentUserId={currentUserId} />
         ))
       )}
     </main>

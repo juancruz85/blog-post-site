@@ -1,8 +1,34 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Mac OS X Tiger — brushed metal + Aqua
+   Shares the palette and class vocabulary of the project-manager app,
+   with a brushed-metal shell, Aqua gel buttons and an Aqua scrollbar.
+   ------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #eef0f3;
+  --foreground: #1f252c;
+
+  /* brushed metal */
+  --metal-light: #e9eaec;
+  --metal: #cfd2d6;
+  --metal-dark: #a9aeb4;
+  --metal-edge: #8d939a;
+  --metal-grain: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.5) 0px,
+    rgba(255, 255, 255, 0.5) 1px,
+    rgba(90, 96, 104, 0.07) 1px,
+    rgba(90, 96, 104, 0.07) 2px
+  );
+
+  /* aqua blue */
+  --aqua-top: #9fd6fb;
+  --aqua-mid: #3f9fe8;
+  --aqua-low: #1868b8;
+  --aqua-lift: #59b3f2;
+  --aqua-edge: #12558f;
 }
 
 @theme inline {
@@ -12,134 +38,119 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-
-  font-family: "Times New Roman", serif;
-
-  background: linear-gradient(to bottom, #d9d9d9, #b8b8b8);
-
-  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+body,
+.ios-page {
+  background:
+    radial-gradient(circle at 18% -10%, rgba(255, 255, 255, 0.75), transparent 34rem),
+    var(--metal-grain),
+    linear-gradient(
+      180deg,
+      var(--metal-light) 0%,
+      var(--metal) 46%,
+      var(--metal-dark) 100%
+    );
+  background-size: 100vw 100vh, auto, 100vw 100vh;
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-attachment: fixed;
+  background-color: var(--metal);
+}
+
+/* ---------------------------- Aqua scrollbar ---------------------------- */
+
+html,
+textarea,
+pre,
+.ios-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--aqua-mid) #c6cad0;
+}
+
+html::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+pre::-webkit-scrollbar,
+.ios-scroll::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+html::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+pre::-webkit-scrollbar-track,
+.ios-scroll::-webkit-scrollbar-track {
+  background:
+    var(--metal-grain),
+    linear-gradient(90deg, #bfc3c9 0%, #d3d6db 40%, #cbced4 100%);
+  border-left: 1px solid #9ba1a8;
+  border-right: 1px solid #e6e8ea;
+  box-shadow: inset 1px 0 3px rgba(36, 42, 49, 0.28);
+}
+
+html::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+pre::-webkit-scrollbar-thumb,
+.ios-scroll::-webkit-scrollbar-thumb {
+  min-height: 34px;
+  border: 1px solid var(--aqua-edge);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.35) 42%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(255, 255, 255, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--aqua-top) 0%,
+      var(--aqua-mid) 48%,
+      var(--aqua-low) 52%,
+      var(--aqua-lift) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.45),
+    0 1px 2px rgba(20, 26, 32, 0.35);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover,
+pre::-webkit-scrollbar-thumb:hover,
+.ios-scroll::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.08) saturate(1.05);
+}
+
+html::-webkit-scrollbar-thumb:active,
+.ios-scroll::-webkit-scrollbar-thumb:active {
+  filter: brightness(0.94);
+}
+
+html::-webkit-scrollbar-button,
+textarea::-webkit-scrollbar-button,
+pre::-webkit-scrollbar-button,
+.ios-scroll::-webkit-scrollbar-button {
+  display: none;
+}
+
+html::-webkit-scrollbar-corner,
+.ios-scroll::-webkit-scrollbar-corner {
+  background: #c9ccd2;
+}
+
+/* ------------------------------- Layout -------------------------------- */
 
 .ios-app {
   min-height: 100vh;
-}
-
-.ios-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  height: 48px;
-
-  background: linear-gradient(to bottom, #606060 0%, #444444 50%, #2f2f2f 100%);
-
-  border-bottom: 1px solid #111;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-.navbar-gloss {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 50%;
-
-  background: rgba(255, 255, 255, 0.12);
-
-  pointer-events: none;
-}
-
-.navbar-content {
-  max-width: 1100px;
-  height: 100%;
-
-  margin: auto;
-  padding: 0 20px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  position: relative;
-  z-index: 2;
-}
-
-.nav-title {
-  color: white;
-  text-decoration: none;
-
-  font-size: 24px;
-  font-weight: bold;
-
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
-}
-
-.nav-links {
-  display: flex;
-  gap: 16px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-
-  padding: 6px 12px;
-
-  border-radius: 8px;
-
-  background: linear-gradient(to bottom, #707070, #454545);
-
-  border: 1px solid #222;
-
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
-}
-
-.nav-links a:hover {
-  background: linear-gradient(to bottom, #7a7a7a, #4f4f4f);
-}
-
-.nav-links form {
-  margin: 0;
-}
-
-.nav-link-button {
-  color: white;
-  font: inherit;
-  cursor: pointer;
-
-  padding: 6px 12px;
-
-  border-radius: 8px;
-
-  background: linear-gradient(to bottom, #707070, #454545);
-
-  border: 1px solid #222;
-
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
-}
-
-.nav-link-button:hover {
-  background: linear-gradient(to bottom, #7a7a7a, #4f4f4f);
 }
 
 .main-container {
@@ -149,293 +160,434 @@ body {
 }
 
 .ios-footer {
-  text-align: center;
-
   margin-top: 40px;
   padding: 20px;
-
-  color: #333;
-
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  text-align: center;
 }
 
-.ios-post-card {
+.ios-footer p,
+.ios-engraved {
+  color: #55606b;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 -1px 0 rgba(20, 26, 32, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------- Brushed metal bar -------------------------- */
+
+.ios-navbar,
+.ios-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 52px;
+  background:
+    var(--metal-grain),
+    linear-gradient(180deg, #dfe1e4 0%, #c3c7cc 48%, #a7acb3 100%);
+  border-bottom: 1px solid #7e848b;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.35),
+    0 2px 7px rgba(25, 32, 40, 0.3);
+}
+
+.navbar-gloss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0)
+  );
+  pointer-events: none;
+}
+
+.navbar-content {
   position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  height: 100%;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  margin-bottom: 24px;
-  padding: 0;
+.nav-title {
+  color: #2b3239;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+}
 
-  background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 40%, #e8e8e8 100%);
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  border: 1px solid #b5b5b5;
-  border-radius: 16px;
+.nav-links form {
+  margin: 0;
+  display: flex;
+}
 
-  overflow: hidden;
-
+/* Metal capsule buttons in the title bar */
+.nav-links a,
+.nav-link-button,
+.ios-button-gray {
+  color: #2d3742;
+  font: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 14px;
+  border: 1px solid var(--metal-edge);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 52%),
+    var(--metal-grain),
+    linear-gradient(180deg, #f2f3f5 0%, #dcdfe3 50%, #c2c6cc 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.25);
+    0 1px 2px rgba(25, 32, 40, 0.28);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: filter 150ms ease, transform 100ms ease;
+}
+
+.nav-links a:hover,
+.nav-link-button:hover,
+.ios-button-gray:hover {
+  filter: brightness(1.05);
+}
+
+.nav-links a:active,
+.nav-link-button:active,
+.ios-button-gray:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(25, 32, 40, 0.3);
+}
+
+/* ------------------------------ Aqua buttons ---------------------------- */
+
+.ios-button,
+.ios-login-button,
+.ios-button-blue {
+  display: inline-block;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 9px 20px;
+  border: 1px solid var(--aqua-edge);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.4) 44%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--aqua-top) 0%,
+      var(--aqua-mid) 48%,
+      var(--aqua-low) 52%,
+      var(--aqua-lift) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(20, 26, 32, 0.32);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.45);
+  transition: filter 150ms ease, transform 100ms ease;
+}
+
+.ios-button:hover,
+.ios-login-button:hover,
+.ios-button-blue:hover {
+  filter: brightness(1.08) saturate(1.05);
+}
+
+.ios-button:active,
+.ios-login-button:active,
+.ios-button-blue:active {
+  transform: translateY(1px);
+  filter: brightness(0.93);
+  box-shadow:
+    inset 0 2px 5px rgba(12, 40, 68, 0.5),
+    0 1px 2px rgba(20, 26, 32, 0.28);
+}
+
+.ios-button:focus-visible,
+.ios-login-button:focus-visible,
+.nav-links a:focus-visible,
+.nav-link-button:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 0 3px rgba(79, 159, 232, 0.55);
+}
+
+/* Graphite / metal variant of the Aqua button */
+.ios-button-secondary,
+.ios-button-dark {
+  color: #2d3742;
+  border-color: var(--metal-edge);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 50%),
+    var(--metal-grain),
+    linear-gradient(180deg, #f4f5f7 0%, #dde0e4 48%, #b9bec5 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -3px 6px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(25, 32, 40, 0.26);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ios-login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ios-login-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: saturate(0.45);
+}
+
+/* ------------------------------- Post cards ----------------------------- */
+
+.ios-post-card,
+.ios-card,
+.ios-list-row {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6f8 60%, #e9ecef 100%);
+  border: 1px solid #b8c0ca;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(25, 32, 40, 0.05),
+    0 1px 2px rgba(25, 32, 40, 0.1),
+    0 10px 20px rgba(25, 32, 40, 0.14);
 }
 
 .ios-post-gloss {
   position: absolute;
-
   top: 0;
   left: 0;
-
   width: 100%;
   height: 45%;
-
   background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.45),
+    180deg,
+    rgba(255, 255, 255, 0.5),
     rgba(255, 255, 255, 0)
   );
-
   pointer-events: none;
 }
 
 .ios-post-content {
   position: relative;
   z-index: 2;
-
   padding: 24px;
 }
 
-.ios-post-title {
+.ios-post-title,
+.ios-panel-title {
   margin: 0 0 12px 0;
-
-  font-size: 30px;
-  color: #222;
-
+  font-size: 26px;
+  color: #27313b;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .ios-post-meta {
   margin-bottom: 16px;
-
-  color: #666;
-  font-size: 14px;
-  font-style: italic;
+  color: #6b747d;
+  font-size: 13px;
 }
 
 .ios-post-excerpt {
-  line-height: 1.8;
-  color: #333;
-  font-size: 17px;
+  color: #333b43;
+  font-size: 15px;
+  line-height: 1.75;
 }
 
 .ios-post-footer {
+  display: flex;
+  gap: 12px;
   margin-top: 24px;
 }
 
-.ios-button {
-  display: inline-block;
-
-  text-decoration: none;
-  color: white;
-
-  padding: 10px 18px;
-
-  border-radius: 10px;
-
-  background: linear-gradient(to bottom, #7bc3ff 0%, #3896ea 50%, #0f69c8 100%);
-
-  border: 1px solid #0a4d92;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.35);
-
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
-
-  font-weight: bold;
-}
-
-.ios-button:hover {
-  filter: brightness(1.05);
-}
-
-.ios-button:active {
-  transform: translateY(1px);
-
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
-}
+/* -------------------------------- Login --------------------------------- */
 
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
-
   min-height: 70vh;
 }
 
 .login-card {
   position: relative;
-
   width: 420px;
   max-width: 90%;
-
   padding: 30px;
-
-  border-radius: 18px;
-
-  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 50%, #e0e0e0 100%);
-
-  border: 1px solid #b6b6b6;
-
+  border-radius: 12px;
+  background:
+    var(--metal-grain),
+    linear-gradient(180deg, #f6f7f8 0%, #e4e7ea 50%, #d2d6db 100%);
+  border: 1px solid var(--metal-edge);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 8px 20px rgba(0, 0, 0, 0.25);
+    inset 0 -1px 0 rgba(255, 255, 255, 0.4),
+    0 10px 26px rgba(25, 32, 40, 0.32);
 }
 
 .login-gloss {
   position: absolute;
-
   top: 0;
   left: 0;
-
   width: 100%;
   height: 45%;
-
-  border-radius: 18px 18px 0 0;
-
+  border-radius: 12px 12px 0 0;
   background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.45),
+    180deg,
+    rgba(255, 255, 255, 0.5),
     rgba(255, 255, 255, 0)
   );
-
   pointer-events: none;
 }
 
+.login-card > *:not(.login-gloss) {
+  position: relative;
+  z-index: 2;
+}
+
 .login-title {
-  text-align: center;
   margin: 0;
-
-  font-size: 32px;
-
-  color: #222;
-
-  text-shadow: 0 1px 0 white;
+  text-align: center;
+  font-size: 28px;
+  color: #27313b;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .login-subtitle {
-  text-align: center;
-
-  color: #666;
-
   margin-bottom: 25px;
+  text-align: center;
+  color: #6b747d;
+  font-size: 13px;
 }
+
+/* -------------------------------- Forms --------------------------------- */
 
 .input-group {
   margin-bottom: 18px;
 }
 
-.input-group label {
+.input-group label,
+.ios-form-label {
   display: block;
-
   margin-bottom: 6px;
-
+  color: #3c454e;
+  font-size: 13px;
   font-weight: bold;
-
-  color: #444;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.input-group input {
-  width: 100%;
+.ios-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
+.input-group input,
+.ios-form-input,
+.ios-form-textarea {
+  width: 100%;
   box-sizing: border-box;
-
-  padding: 12px;
-
-  font-size: 16px;
-
-  border-radius: 10px;
-
-  border: 1px solid #999;
-
-  background: linear-gradient(to bottom, #fafafa, #e4e4e4);
-
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.input-group input:focus {
-  outline: none;
-
-  border-color: #2f84da;
-
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.15),
-    0 0 8px rgba(47, 132, 218, 0.5);
-}
-
-.ios-login-button {
-  width: 100%;
-
-  padding: 12px;
-
-  border-radius: 10px;
-
-  border: 1px solid #0a4d92;
-
-  color: white;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  background: linear-gradient(to bottom, #7bc3ff, #3896ea 50%, #0f69c8);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.3);
-
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.4);
-}
-
-.ios-login-button:active {
-  transform: translateY(1px);
-}
-
-.login-error {
-  margin-bottom: 15px;
-
-  padding: 10px;
-
+  padding: 10px 12px;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid #aeb8c4;
   border-radius: 8px;
+  background: linear-gradient(180deg, #eef2f6 0%, #ffffff 100%);
+  box-shadow:
+    inset 0 1px 3px rgba(25, 32, 40, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
 
-  color: #8b0000;
+.input-group input:focus,
+.ios-form-input:focus,
+.ios-form-textarea:focus {
+  border-color: #4f91ca;
+  box-shadow:
+    inset 0 1px 3px rgba(25, 32, 40, 0.16),
+    0 0 0 3px rgba(79, 159, 232, 0.45);
+}
 
-  background: #ffe3e3;
+.ios-form-textarea {
+  resize: vertical;
+}
 
-  border: 1px solid #d88;
+.ios-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* ------------------------------- Messages ------------------------------- */
+
+.login-error,
+.ios-form-error {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  color: #8b1a1a;
+  font-size: 13px;
+  background: linear-gradient(180deg, #fff1f1 0%, #ffe0e0 100%);
+  border: 1px solid #d99a9a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .login-success {
   margin-bottom: 15px;
-
   padding: 10px;
-
   border-radius: 8px;
-
   color: #1b5e20;
-
-  background: #e8f5e9;
-
-  border: 1px solid #81c784;
+  font-size: 13px;
+  background: linear-gradient(180deg, #f2fbf3 0%, #e0f3e3 100%);
+  border: 1px solid #8ec394;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
-.ios-login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
+/* ------------------------- Page headers & detail ------------------------ */
 
 .ios-page-title {
   margin-bottom: 24px;
-  font-size: 28px;
+  color: #27313b;
+  font-size: 26px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .ios-page-header {
@@ -455,67 +607,30 @@ body {
   max-width: 760px;
   margin: 0 auto;
   padding: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6f8 100%);
+  border: 1px solid #b8c0ca;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(25, 32, 40, 0.1),
+    0 10px 20px rgba(25, 32, 40, 0.14);
 }
 
 .ios-back-link {
   display: inline-block;
   margin-bottom: 16px;
-  color: #0f69c8;
+  color: #1868b8;
+  font-size: 13px;
+  font-weight: bold;
   text-decoration: none;
+}
+
+.ios-back-link:hover {
+  text-decoration: underline;
 }
 
 .ios-post-body {
   margin-top: 24px;
-  line-height: 1.6;
-}
-
-.ios-post-footer {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.ios-button-secondary {
-  background: linear-gradient(to bottom, #e8e8e8, #c8c8c8 50%, #a8a8a8);
-  color: #333;
-  border-color: #666;
-}
-
-.ios-edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.ios-form-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-weight: bold;
-  color: #444;
-}
-
-.ios-form-input,
-.ios-form-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #999;
-  background: linear-gradient(to bottom, #fafafa, #e4e4e4);
-}
-
-.ios-form-textarea {
-  font-family: inherit;
-  resize: vertical;
-}
-
-.ios-form-error {
-  padding: 10px;
-  border-radius: 8px;
-  color: #8b0000;
-  background: #ffe3e3;
-  border: 1px solid #d88;
+  color: #333b43;
+  line-height: 1.7;
 }
