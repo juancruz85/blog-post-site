@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { markdownToExcerpt } from "@/lib/markdown";
+import TiptapPreview from "@/components/TiptapPreview";
 
 export default function PostCard({ post, currentUserId }) {
   const isOwner = currentUserId && post.user_id === currentUserId;
@@ -18,11 +20,10 @@ export default function PostCard({ post, currentUserId }) {
           <span> · by {ownerLabel}</span>
         </div>
 
-        <p className="ios-post-excerpt">
-          {post.content.length > 250
-            ? post.content.substring(0, 250) + "..."
-            : post.content}
-        </p>
+        <TiptapPreview
+          content={post.content}
+          fallback={markdownToExcerpt(post.content)}
+        />
 
         <div className="ios-post-footer">
           <Link href={`/posts/${post.id}`} className="ios-button">

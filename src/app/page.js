@@ -1,9 +1,7 @@
 import PostCard from "../components/PostCard";
 import { getPosts, getCurrentUserId } from "../lib/posts";
-import Tiptap from "@/components/Tiptap";
 
 export default async function Home() {
-  return <Tiptap />;
   const [posts, currentUserId] = await Promise.all([
     getPosts(),
     getCurrentUserId(),

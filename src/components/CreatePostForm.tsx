@@ -5,6 +5,7 @@ import {
   createPost,
   type PostActionState,
 } from "@/lib/actions/posts";
+import Tiptap from "@/components/Tiptap";
 
 export default function CreatePostForm() {
   const [state, formAction, pending] = useActionState<PostActionState, FormData>(
@@ -37,16 +38,10 @@ export default function CreatePostForm() {
         />
       </label>
 
-      <label className="ios-form-label">
-        Content (Markdown)
-        <textarea
-          name="content"
-          required
-          rows={16}
-          className="ios-form-textarea"
-          placeholder="# Write your post in markdown..."
-        />
-      </label>
+      <div className="ios-form-label">
+        Content
+        <Tiptap name="content" placeholder="Write your post…" />
+      </div>
 
       <button type="submit" disabled={pending} className="ios-button">
         {pending ? "Creating..." : "Create Post"}

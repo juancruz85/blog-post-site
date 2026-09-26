@@ -1,16 +1,9 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------
-   Mac OS X Tiger — brushed metal + Aqua
-   Shares the palette and class vocabulary of the project-manager app,
-   with a brushed-metal shell, Aqua gel buttons and an Aqua scrollbar.
-   ------------------------------------------------------------------ */
-
 :root {
   --background: #eef0f3;
   --foreground: #1f252c;
 
-  /* brushed metal */
   --metal-light: #e9eaec;
   --metal: #cfd2d6;
   --metal-dark: #a9aeb4;
@@ -23,7 +16,6 @@
     rgba(90, 96, 104, 0.07) 2px
   );
 
-  /* aqua blue */
   --aqua-top: #9fd6fb;
   --aqua-mid: #3f9fe8;
   --aqua-low: #1868b8;
@@ -64,8 +56,6 @@ body,
   background-attachment: fixed;
   background-color: var(--metal);
 }
-
-/* ---------------------------- Aqua scrollbar ---------------------------- */
 
 html,
 textarea,
@@ -147,8 +137,6 @@ html::-webkit-scrollbar-corner,
   background: #c9ccd2;
 }
 
-/* ------------------------------- Layout -------------------------------- */
-
 .ios-app {
   min-height: 100vh;
 }
@@ -175,8 +163,6 @@ html::-webkit-scrollbar-corner,
     0 -1px 0 rgba(20, 26, 32, 0.3),
     0 1px 0 rgba(255, 255, 255, 0.8);
 }
-
-/* --------------------------- Brushed metal bar -------------------------- */
 
 .ios-navbar,
 .ios-topbar {
@@ -239,7 +225,6 @@ html::-webkit-scrollbar-corner,
   display: flex;
 }
 
-/* Metal capsule buttons in the title bar */
 .nav-links a,
 .nav-link-button,
 .ios-button-gray {
@@ -275,8 +260,6 @@ html::-webkit-scrollbar-corner,
   transform: translateY(1px);
   box-shadow: inset 0 2px 4px rgba(25, 32, 40, 0.3);
 }
-
-/* ------------------------------ Aqua buttons ---------------------------- */
 
 .ios-button,
 .ios-login-button,
@@ -341,7 +324,6 @@ html::-webkit-scrollbar-corner,
     0 0 0 3px rgba(79, 159, 232, 0.55);
 }
 
-/* Graphite / metal variant of the Aqua button */
 .ios-button-secondary,
 .ios-button-dark {
   color: #2d3742;
@@ -369,8 +351,6 @@ html::-webkit-scrollbar-corner,
   cursor: not-allowed;
   filter: saturate(0.45);
 }
-
-/* ------------------------------- Post cards ----------------------------- */
 
 .ios-post-card,
 .ios-card,
@@ -435,8 +415,6 @@ html::-webkit-scrollbar-corner,
   margin-top: 24px;
 }
 
-/* -------------------------------- Login --------------------------------- */
-
 .login-page {
   display: flex;
   justify-content: center;
@@ -494,8 +472,6 @@ html::-webkit-scrollbar-corner,
   color: #6b747d;
   font-size: 13px;
 }
-
-/* -------------------------------- Forms --------------------------------- */
 
 .input-group {
   margin-bottom: 18px;
@@ -556,8 +532,6 @@ html::-webkit-scrollbar-corner,
   margin-top: 20px;
 }
 
-/* ------------------------------- Messages ------------------------------- */
-
 .login-error,
 .ios-form-error {
   margin-bottom: 15px;
@@ -580,8 +554,6 @@ html::-webkit-scrollbar-corner,
   border: 1px solid #8ec394;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
-
-/* ------------------------- Page headers & detail ------------------------ */
 
 .ios-page-title {
   margin-bottom: 24px;
@@ -633,4 +605,227 @@ html::-webkit-scrollbar-corner,
   margin-top: 24px;
   color: #333b43;
   line-height: 1.7;
+}
+
+.ios-editor {
+  border: 1px solid #aeb8c4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow:
+    inset 0 1px 3px rgba(25, 32, 40, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ios-editor:focus-within {
+  border-color: #4f91ca;
+  box-shadow:
+    inset 0 1px 3px rgba(25, 32, 40, 0.16),
+    0 0 0 3px rgba(79, 159, 232, 0.45);
+}
+
+.ios-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 7px 8px;
+  border-bottom: 1px solid #9ba1a8;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 52%),
+    var(--metal-grain),
+    linear-gradient(180deg, #e4e6e9 0%, #cdd1d6 50%, #b4b9bf 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ios-editor-tool {
+  min-width: 30px;
+  padding: 4px 9px;
+  color: #2d3742;
+  font: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.4;
+  cursor: pointer;
+  border: 1px solid var(--metal-edge);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 52%),
+    linear-gradient(180deg, #f6f7f8 0%, #e2e5e9 50%, #c9cdd3 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 1px rgba(25, 32, 40, 0.25);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: filter 120ms ease;
+}
+
+.ios-editor-tool:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.ios-editor-tool:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ios-editor-tool.is-active {
+  color: #ffffff;
+  border-color: var(--aqua-edge);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%),
+    linear-gradient(
+      180deg,
+      var(--aqua-low) 0%,
+      var(--aqua-mid) 50%,
+      var(--aqua-top) 100%
+    );
+  box-shadow:
+    inset 0 2px 5px rgba(12, 40, 68, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.45);
+}
+
+.ios-editor-surface {
+  min-height: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 16px 18px;
+  color: var(--foreground);
+  font-size: 15px;
+  line-height: 1.7;
+  outline: none;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+  scrollbar-width: thin;
+  scrollbar-color: var(--aqua-mid) #c6cad0;
+}
+
+.ios-editor-surface.is-preview {
+  min-height: 0;
+  max-height: 11em;
+  overflow: hidden;
+  padding: 0;
+  color: inherit;
+  background: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 8em, transparent 11em);
+  mask-image: linear-gradient(180deg, #000 8em, transparent 11em);
+}
+
+.ios-editor-surface::-webkit-scrollbar {
+  width: 15px;
+}
+
+.ios-editor-surface::-webkit-scrollbar-track {
+  background:
+    var(--metal-grain),
+    linear-gradient(90deg, #bfc3c9 0%, #d3d6db 40%, #cbced4 100%);
+  border-left: 1px solid #9ba1a8;
+  box-shadow: inset 1px 0 3px rgba(36, 42, 49, 0.28);
+}
+
+.ios-editor-surface::-webkit-scrollbar-thumb {
+  min-height: 34px;
+  border: 1px solid var(--aqua-edge);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.35) 42%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(255, 255, 255, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--aqua-top) 0%,
+      var(--aqua-mid) 48%,
+      var(--aqua-low) 52%,
+      var(--aqua-lift) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(20, 26, 32, 0.35);
+}
+
+.ios-editor-surface > *:first-child {
+  margin-top: 0;
+}
+
+.ios-editor-surface > *:last-child {
+  margin-bottom: 0;
+}
+
+.ios-editor-surface h1,
+.ios-editor-surface h2,
+.ios-editor-surface h3 {
+  margin: 1.1em 0 0.5em;
+  color: #27313b;
+  line-height: 1.3;
+}
+
+.ios-editor-surface h1 { font-size: 24px; }
+.ios-editor-surface h2 { font-size: 20px; }
+.ios-editor-surface h3 { font-size: 17px; }
+
+.ios-editor-surface p {
+  margin: 0 0 0.85em;
+}
+
+.ios-editor-surface ul,
+.ios-editor-surface ol {
+  margin: 0 0 0.85em;
+  padding-left: 1.5em;
+}
+
+.ios-editor-surface li {
+  margin-bottom: 0.25em;
+}
+
+.ios-editor-surface blockquote {
+  margin: 0 0 0.85em;
+  padding: 2px 0 2px 14px;
+  color: #55606b;
+  border-left: 3px solid #b8c0ca;
+}
+
+.ios-editor-surface code {
+  padding: 1px 5px;
+  font-family: ui-monospace, Menlo, Monaco, monospace;
+  font-size: 13px;
+  background: #eef1f4;
+  border: 1px solid #d6dce3;
+  border-radius: 4px;
+}
+
+.ios-editor-surface pre {
+  margin: 0 0 0.85em;
+  padding: 12px 14px;
+  overflow-x: auto;
+  color: #e8ecf1;
+  background: linear-gradient(180deg, #3c444d 0%, #2c333b 100%);
+  border: 1px solid #20262d;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.ios-editor-surface pre code {
+  padding: 0;
+  color: inherit;
+  font-size: 13px;
+  background: none;
+  border: none;
+}
+
+.ios-editor-surface hr {
+  margin: 1.2em 0;
+  height: 1px;
+  border: none;
+  background: linear-gradient(90deg, transparent, #b8c0ca 20%, #b8c0ca 80%, transparent);
+}
+
+.ios-editor-surface p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #98a2ac;
+  font-style: italic;
+  pointer-events: none;
 }

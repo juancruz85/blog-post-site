@@ -6,6 +6,7 @@ import {
   type PostActionState,
 } from "@/lib/actions/posts";
 import type { Post } from "../../types";
+import Tiptap from "@/components/Tiptap";
 
 interface Props {
   post: Post;
@@ -43,16 +44,10 @@ export default function EditPostForm({ post }: Props) {
         />
       </label>
 
-      <label className="ios-form-label">
-        Content (Markdown)
-        <textarea
-          name="content"
-          defaultValue={post.content}
-          required
-          rows={16}
-          className="ios-form-textarea"
-        />
-      </label>
+      <div className="ios-form-label">
+        Content
+        <Tiptap name="content" defaultValue={post.content} />
+      </div>
 
       <button type="submit" disabled={pending} className="ios-button">
         {pending ? "Saving..." : "Save Changes"}
